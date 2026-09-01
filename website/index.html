@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#111315">
+    <title>GRUPO TEXVAL 1964 | Fabricación Textil de Alta Gama</title>
+    
+    <style>
+        /* --- RESET & ROOT VARIABLES --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --brand-gold: #c5a880;
+            --brand-gold-dark: #a3845b;
+            --brand-charcoal: #111315;
+            --brand-dark: #181b1f;
+            --brand-card: #22252a;
+            --text-main: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-subtle: rgba(255, 255, 255, 0.1);
+        }
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            background-color: var(--brand-charcoal);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-font-smoothing: antialiased;
+        }
+        .serif {
+            font-family: "Cinzel", "Didot", "Bodoni MT", "Baskerville", "Georgia", serif;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            background-color: #2a2e35; /* Visual fallback while loading */
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+        .section-padding {
+            padding: 4.5rem 0;
+        }
+        @media (min-width: 768px) {
+            .container { padding: 0 2rem; }
+            .section-padding { padding: 7rem 0; }
+        }
+
+        /* --- NAVIGATION HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            background-color: rgba(17, 19, 21, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .nav-wrapper {
+            height: 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .logo-svg {
+            height: 2.25rem;
+            width: auto;
+            stroke: var(--brand-gold);
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .logo-text {
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding-left: 0.75rem;
+        }
+        .logo-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #ffffff;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        .logo-sub {
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            color: var(--brand-gold);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .desktop-nav {
+            display: none;
+            gap: 2rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+        }
+        .desktop-nav a:hover {
+            color: var(--brand-gold);
+        }
+        .btn-nav {
+            border: 1px solid rgba(197, 168, 128, 0.6);
+            color: var(--brand-gold);
+            padding: 0.5rem 1.25rem;
+            transition: all 0.3s;
+        }
+        .btn-nav:hover {
+            background-color: var(--brand-gold);
+            color: #000000;
+        }
+        .menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        @media (min-width: 768px) {
+            .desktop-nav { display: flex; align-items: center; }
+            .menu-btn { display: none; }
+        }
+
+        /* Mobile Dropdown Menu */
+        #mobile-menu {
+            display: none;
+            background-color: var(--brand-dark);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.5rem;
+            flex-direction: column;
+            gap: 1.25rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        #mobile-menu.open {
+            display: flex;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 5rem;
+            text-align: center;
+            overflow: hidden;
+            background-color: #1a1c20;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--brand-charcoal), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(197, 168, 128, 0.4);
+            padding: 0.35rem 1rem;
+            border-radius: 9999px;
+            background-color: rgba(24, 27, 31, 0.7);
+            margin-bottom: 1.5rem;
+        }
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--brand-gold);
+        }
+        .badge-text {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--brand-gold);
+            font-weight: 600;
+        }
+        .hero-title {
+            font-size: 2rem;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .gold-gradient {
+            background: linear-gradient(90deg, #c5a880, #fef08a, #a3845b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+        }
+        .hero-cta-box {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .btn-primary {
+            background-color: var(--brand-gold);
+            color: #000000;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 1rem 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 25px -5px rgba(197, 168, 128, 0.2);
+        }
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 1rem 2rem;
+            transition: all 0.3s;
+        }
+        @media (min-width: 768px) {
+            .hero-title { font-size: 4rem; }
+            .hero-desc { font-size: 1.125rem; }
+            .hero-cta-box { flex-direction: row; max-width: none; }
+        }
+
+        /* --- SECTION HEADERS --- */
+        .sec-sub {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--brand-gold);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .sec-title {
+            font-size: 1.75rem;
+            color: #ffffff;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .sec-title { font-size: 2.25rem; }
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 1.5rem;
+        }
+        .stat-num {
+            font-size: 1.75rem;
+            color: var(--brand-gold);
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+        }
+        .about-image-card {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            aspect-ratio: 4/3;
+            background-color: #22252a;
+        }
+        .about-image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .about-image-caption {
+            position: absolute;
+            bottom: 0;
+            inset-x: 0;
+            padding: 1.25rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+        @media (min-width: 992px) {
+            .about-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+            .stat-num { font-size: 2.25rem; }
+        }
+
+        /* --- PRODUCTION SECTION --- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .prod-card {
+            background-color: var(--brand-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .prod-card-img {
+            height: 14rem;
+            width: 100%;
+            overflow: hidden;
+            background-color: #1c1e22;
+        }
+        .prod-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .prod-card-body {
+            padding: 1.75rem;
+            flex: 1;
+        }
+        .prod-phase {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--brand-gold);
+            font-weight: 700;
+        }
+        .prod-card-title {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin: 0.25rem 0 0.75rem;
+            font-weight: 600;
+        }
+        .prod-card-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+        @media (min-width: 768px) {
+            .cards-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        .service-item {
+            padding: 1.5rem;
+            border-left: 2px solid var(--brand-gold);
+            background-color: rgba(17, 19, 21, 0.6);
+        }
+        .service-title {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .service-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+        @media (min-width: 640px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+        .contact-info-card {
+            background-color: var(--brand-dark);
+            padding: 1.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .info-icon {
+            padding: 0.6rem;
+            background-color: var(--brand-charcoal);
+            border-radius: 6px;
+            color: var(--brand-gold);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
+        }
+        .info-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #64748b;
+            font-weight: 600;
+            display: block;
+        }
+        .info-val {
+            font-size: 0.85rem;
+            color: #ffffff;
+            font-weight: 500;
+            word-break: break-word;
+        }
+        .contact-form-box {
+            background-color: var(--brand-dark);
+            padding: 1.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .form-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+        }
+        .form-input, .form-textarea {
+            width: 100%;
+            background-color: var(--brand-charcoal);
+            border: 1px solid var(--border-subtle);
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            color: #ffffff;
+            outline: none;
+            border-radius: 0;
+            -webkit-appearance: none;
+        }
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--brand-gold);
+        }
+        .submit-btn {
+            width: 100%;
+            background-color: var(--brand-gold);
+            color: #000000;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 1rem;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        @media (min-width: 640px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (min-width: 992px) {
+            .contact-grid { grid-template-columns: 5fr 7fr; gap: 3.5rem; }
+            .contact-info-card, .contact-form-box { padding: 2.5rem; }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 2.5rem 0;
+            background-color: #000000;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .footer-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .footer-wrap { flex-direction: row; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo-box">
+                <svg viewBox="0 0 160 90" class="logo-svg">
+                    <path d="M 50 16 C 22 16 10 32 10 50 C 10 68 24 82 50 82 C 68 82 78 70 78 54 L 46 54" stroke-width="7" />
+                    <line x1="38" y1="32" x2="108" y2="32" stroke-width="8" />
+                    <line x1="73" y1="32" x2="73" y2="84" stroke-width="8" />
+                    <polyline points="94,32 118,84 142,32" stroke-width="8" />
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-title serif">Grupo Texval</span>
+                    <span class="logo-sub">1964 · Spain</span>
+                </div>
+            </a>
+
+            <nav class="desktop-nav">
+                <a href="#empresa">La Empresa</a>
+                <a href="#produccion">Producción e Innovación</a>
+                <a href="#servicios">Especialidades</a>
+                <a href="#contacto" class="btn-nav">Contacto</a>
+            </nav>
+
+            <button id="menu-btn" class="menu-btn" aria-label="Abrir Menú">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu">
+            <a href="#empresa" class="m-link">La Empresa</a>
+            <a href="#produccion" class="m-link">Producción e Innovación</a>
+            <a href="#servicios" class="m-link">Especialidades</a>
+            <a href="#contacto" class="btn-nav m-link" style="text-align:center;">Contacto</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <img src="hero-factory.jpg" 
+             alt="Planta de producción y costura" 
+             class="hero-bg">
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-content">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                <span class="badge-text">Tradición e Ingeniería Textil Desde 1964</span>
+            </div>
+            
+            <h1 class="hero-title serif">
+                Excelencia Española en <br><span class="gold-gradient">Manufactura Textil</span>
+            </h1>
+
+            <p class="hero-desc">
+                Soluciones integrales de tejeduría, corte y confección de alto rendimiento ubicadas en el corazón industrial de Bocairent, Valencia.
+            </p>
+
+            <div class="hero-cta-box">
+                <a href="#produccion" class="btn-primary">Descubrir Maquinaria</a>
+                <a href="#contacto" class="btn-secondary">Solicitar Propuesta</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="empresa" class="section-padding" style="background-color: var(--brand-dark); border-top: 1px solid var(--border-subtle);">
+        <div class="container about-grid">
+            <div>
+                <span class="sec-sub">Historia y Compromiso</span>
+                <h2 class="sec-title serif">Más de seis décadas perfeccionando la industria de la confección</h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+                    En <strong style="color: #fff;">GRUPO TEXVAL 1964, S.L.</strong> fusionamos la artesanía textil valenciana con líneas de producción mecanizadas de última generación. Nuestro centro operativo en Bocairent abastece a firmas de moda y distribuidores industriales a escala internacional con estándares estrictos de la Unión Europea.
+                </p>
+                
+                <div class="stats-grid">
+                    <div>
+                        <div class="stat-num serif">100%</div>
+                        <div class="stat-label">Producción Nacional (España)</div>
+                    </div>
+                    <div>
+                        <div class="stat-num serif">ISO & CE</div>
+                        <div class="stat-label">Conformidad y Calidad</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-image-card">
+                <img src="factory-overview.jpg" alt="Taller textil">
+                <div class="about-image-caption">
+                    <span class="sec-sub" style="margin-bottom: 0;">Instalaciones Centrales</span>
+                    <p style="color: #fff; font-size: 0.85rem; font-weight: 500;">Bocairent (Valencia), España</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="produccion" class="section-padding">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <span class="sec-sub">Línea de Producción</span>
+                <h2 class="sec-title serif">Tecnología Industrial y Precisión</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Control de calidad milimétrico en cada fase: hilado, corte computarizado y ensamble a gran escala.</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="prod-card">
+                    <div class="prod-card-img">
+                        <img src="spinning.jpg" alt="Tejeduría">
+                    </div>
+                    <div class="prod-card-body">
+                        <span class="prod-phase">Fase 01</span>
+                        <h3 class="prod-card-title serif">Tejeduría e Hilatura</h3>
+                        <p class="prod-card-text">Procesamiento de fibras con densidad optimizada y alta durabilidad mediante telares automáticos de máxima velocidad.</p>
+                    </div>
+                </div>
+
+                <div class="prod-card">
+                    <div class="prod-card-img">
+                        <img src="cutting.jpg" alt="Corte">
+                    </div>
+                    <div class="prod-card-body">
+                        <span class="prod-phase">Fase 02</span>
+                        <h3 class="prod-card-title serif">Corte y Ensamblado</h3>
+                        <p class="prod-card-text">Mesas de corte automático por control numérico asegurando tolerancias mínimas para producciones en serie y tiradas a medida.</p>
+                    </div>
+                </div>
+
+                <div class="prod-card">
+                    <div class="prod-card-img">
+                        <img src="finishing.jpg" alt="Acabado">
+                    </div>
+                    <div class="prod-card-body">
+                        <span class="prod-phase">Fase 03</span>
+                        <h3 class="prod-card-title serif">Acabado y Etiquetado</h3>
+                        <p class="prod-card-text">Inspección exhaustiva de costura, control de tensión, vaporizado y embalaje listo para su distribución internacional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="section-padding" style="background-color: var(--brand-dark); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-item">
+                    <h4 class="service-title serif">Prendas Corporativas</h4>
+                    <p class="service-desc">Uniformes técnicos y confección especializada de alto rendimiento funcional.</p>
+                </div>
+                <div class="service-item">
+                    <h4 class="service-title serif">Moda y Pret-à-Porter</h4>
+                    <p class="service-desc">Desarrollo de colecciones de temporada con patronaje digitalizado para marcas.</p>
+                </div>
+                <div class="service-item">
+                    <h4 class="service-title serif">Marca Blanca (OEM)</h4>
+                    <p class="service-desc">Capacidad de producción a gran volumen bajo especificaciones de diseño privadas.</p>
+                </div>
+                <div class="service-item">
+                    <h4 class="service-title serif">Textiles Técnicos</h4>
+                    <p class="service-desc">Tratamientos antimicrobianos, ignífugos y tejidos repelentes de fluidos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="section-padding">
+        <div class="container contact-grid">
+            <div>
+                <span class="sec-sub">Contacto Directo</span>
+                <h2 class="sec-title serif">Oficina Central y Fábrica</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">
+                    Póngase en contacto con nuestro equipo comercial para presupuestos, envíos de muestras o visitas técnicas a nuestras instalaciones.
+                </p>
+
+                <div class="contact-info-card">
+                    <div class="info-row">
+                        <div class="info-icon">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                        </div>
+                        <div>
+                            <span class="info-label">Razón Social</span>
+                            <p class="info-val">GRUPO TEXVAL 1964, S.L.</p>
+                            <p style="font-size: 0.75rem; color: var(--brand-gold); margin-top: 2px;">CIF / VAT: ESB98016439</p>
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-icon">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <div>
+                            <span class="info-label">Dirección</span>
+                            <p class="info-val">C/ Taula del Rei s/n</p>
+                            <p style="font-size: 0.75rem; color: var(--text-muted);">46880 - Bocairent (Valencia), España</p>
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-icon">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <div>
+                            <span class="info-label">Teléfono</span>
+                            <p><a href="tel:+34650223973" class="info-val" style="color:#fff;">+34 650 223 973</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-row">
+                        <div class="info-icon">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div>
+                            <span class="info-label">Correo Electrónico</span>
+                            <p><a href="mailto:grupotexval@hotmail.com" class="info-val" style="color:#fff;">grupotexval@hotmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-box">
+                <h3 class="sec-title serif" style="font-size: 1.5rem; margin-bottom: 0.25rem;">Enviar una Consulta</h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem;">Complete los datos a continuación y responderemos a la brevedad.</p>
+
+                <form onsubmit="event.preventDefault(); alert('Gracias por su mensaje. Nos pondremos en contacto pronto.');">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Empresa</label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Teléfono</label>
+                            <input type="tel" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label class="form-label">Mensaje / Especificación</label>
+                        <textarea rows="4" required class="form-textarea"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Enviar Solicitud</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-wrap">
+            <div>
+                <strong style="color: #fff;" class="serif">GRUPO TEXVAL 1964, S.L.</strong> | VAT: ESB98016439
+            </div>
+            <div>© 2026 Todos los derechos reservados. Bocairent (Valencia), España.</div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            var btn = document.getElementById('menu-btn');
+            var menu = document.getElementById('mobile-menu');
+            var links = document.querySelectorAll('.m-link');
+
+            if (btn && menu) {
+                btn.addEventListener('click', function() {
+                    menu.classList.toggle('open');
+                });
+                for (var i = 0; i < links.length; i++) {
+                    links[i].addEventListener('click', function() {
+                        menu.classList.remove('open');
+                    });
+                }
+            }
+        })();
+    </script>
+</body>
+</html>
